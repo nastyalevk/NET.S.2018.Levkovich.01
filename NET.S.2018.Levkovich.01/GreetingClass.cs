@@ -2,8 +2,15 @@
 
 namespace Logic
 {
+    /// <summary>
+    /// class consist quick and merge sorts
+    /// </summary>
     public class GreetingClass
     {
+        /// <summary>
+        /// checks array and call sorting
+        /// </summary>
+        /// <param name="input"></param>
         public static void QuickSort(int[] input)
         {
             if (input == null)
@@ -12,6 +19,11 @@ namespace Logic
             }
             QuickSort(input, input.Length);
         }
+        /// <summary>
+        /// quick sort of array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="size"></param>
         public static void QuickSort(int[] input, int size)
         {
             int i = 0;
@@ -47,7 +59,25 @@ namespace Logic
                 QuickSort(input, size - i);
             }
         }
-
+     
+        /// <summary>
+        /// checks array and call sorting
+        /// </summary>
+        /// <param name="input"></param>
+        public static void MergeSort(int[] input)
+        {
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+            MergeSort(input, 0, input.Length - 1);
+        }
+        /// <summary>
+        /// recursion
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
         public static void MergeSort(int[] input, int low, int high)
         {
             if (low < high)
@@ -58,16 +88,13 @@ namespace Logic
                 Merge(input, low, middle, high);
             }
         }
-
-        public static void MergeSort(int[] input)
-        {
-            if (input == null)
-            {
-                throw new ArgumentNullException(nameof(input));
-            }
-            MergeSort(input, 0, input.Length - 1);
-        }
-
+        /// <summary>
+        /// merge sort of array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="low"></param>
+        /// <param name="middle"></param>
+        /// <param name="high"></param>
         private static void Merge(int[] input, int low, int middle, int high)
         {
 
