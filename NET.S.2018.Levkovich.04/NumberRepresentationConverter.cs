@@ -6,18 +6,26 @@ namespace NumberRepresentationConverter
     /// <summary>
     /// Public class, that represent number in binary notation. 
     /// </summary>
+<<<<<<< HEAD
 
     public static class NumberRepresentationConverter
     {
         #region Constant
 
+=======
+    public static class NumberRepresentationConverter
+    {
+>>>>>>> bb6b9b95004721eead233a82bd4f028c5fc7f3b7
         /// <summary>
         /// Bit number constant.
         /// </summary>
         private const int BITS_IN_BYTE = 8;
+<<<<<<< HEAD
 
         #endregion
       
+=======
+>>>>>>> bb6b9b95004721eead233a82bd4f028c5fc7f3b7
         #region Public methods
         /// <summary>
         /// Convert double to string IEEE 754 format.
@@ -40,13 +48,30 @@ namespace NumberRepresentationConverter
         }
         #endregion
 
+<<<<<<< HEAD
         #region Struct
+=======
+        #region Struc
+        /// <summary>
+        /// Double and long represent in one field.
+        /// </summary>
+>>>>>>> bb6b9b95004721eead233a82bd4f028c5fc7f3b7
         [StructLayout(LayoutKind.Explicit)]
         private struct DoubleToLongStruct
         {
+            /// <summary>
+            /// Long representation.
+            /// </summary>
             [FieldOffset(0)]
             private readonly long long64bits;
+<<<<<<< HEAD
             
+=======
+
+            /// <summary>
+            /// Double representation.
+            /// </summary>
+>>>>>>> bb6b9b95004721eead233a82bd4f028c5fc7f3b7
             [FieldOffset(0)]
             private double double64bits;
 
