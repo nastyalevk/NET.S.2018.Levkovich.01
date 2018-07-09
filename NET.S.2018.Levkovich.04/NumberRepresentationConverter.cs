@@ -6,6 +6,7 @@ namespace NumberRepresentationConverter
     /// <summary>
     /// Public class, that represent number in binary notation. 
     /// </summary>
+
     public static class NumberRepresentationConverter
     {
         #region Constant
