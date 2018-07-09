@@ -3,78 +3,80 @@ using System.Runtime.InteropServices;
 
 namespace NumberRepresentationConverter
 {
+    /// <summary>
+    /// Public class, that represent number in binary notation. 
+    /// </summary>
     public static class NumberRepresentationConverter
     {
-        private const int BITS_IN_BYTE = 8;
         /// <summary>
-        /// converter
+        /// Bit number constant.
         /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
+        private const int BITS_IN_BYTE = 8;
+        #region Public methods
+        /// <summary>
+        /// Convert double to string IEEE 754 format.
+        /// </summary>
+        /// <param name="number"> Value to convert. </param>
+        /// <returns> String representation in IEEE 754 format. </returns>
         public static string DoubleToBinaryString(this double number)
         {
-            DoubleToLongStruct tmp = new DoubleToLongStruct(number);
-            long tmp2 = tmp.Long64bits;
-            char[] result = new char[64];
-            for (int i = 0; i < 64; i++)
+            var tmp = new DoubleToLongStruct(number);
+            var tmp2 = tmp.Long64bits;
+            var result = new char[64];
+            for (var i = BITS_IN_BYTE * 8 - 1; i >= 0; i--)
             {
                 result[i] = (tmp2 & 1) == 0 ? '0' : '1';
                 tmp2 >>= 1;
             }
-            string results = new string(result);
-            results = ReverseString(results);
+
+            var results = new string(result);
             return results;
         }
-        /// <summary>
-        /// string reverse
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string ReverseString(string s)
-        {
-            char[] arr = s.ToCharArray();
-            Array.Reverse(arr);
-            return new string(arr);
-        }
+        #endregion
 
+        #region Struc
+        /// <summary>
+        /// Double and long represent in one field.
+        /// </summary>
         [StructLayout(LayoutKind.Explicit)]
         private struct DoubleToLongStruct
         {
+            /// <summary>
+            /// Long representation.
+            /// </summary>
             [FieldOffset(0)]
             private readonly long long64bits;
+
+            /// <summary>
+            /// Double representation.
+            /// </summary>
             [FieldOffset(0)]
             private double double64bits;
+
             /// <summary>
-            /// constructor
+            /// Initializes struct.
             /// </summary>
-            /// <param name="number"></param>
+            /// <param name="number"> Double decimal number. </param>
             public DoubleToLongStruct(double number) : this()
             {
-                double64bits = number;
-                long64bits =0;
-            }
-            /// <summary>
-            /// properties 
-            /// </summary>
-            public long Long64bits
-            {
-                get
-                {
-                    return long64bits;
-                }
-            }
-            public double Double64bits
-            {
-                set
-                {
-                    double64bits = value;
-                }
-                get
-                {
-                    return double64bits;
-                }
+                this.Double64bits = number;
             }
 
+            /// <summary>
+            /// Get long64bits 
+            /// </summary>
+            public long Long64bits => this.long64bits;
+
+            /// <summary>
+            /// Get and set Double64bits 
+            /// </summary>
+            public double Double64bits
+            {
+                get => this.double64bits;
+                set => this.double64bits = value;
+            }
         }
+
+        #endregion
     }
 }
