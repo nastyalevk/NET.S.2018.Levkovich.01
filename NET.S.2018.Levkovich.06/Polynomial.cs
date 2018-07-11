@@ -7,8 +7,8 @@ namespace Logic
     /// <summary>
     /// Class for work with polynom
     /// </summary>
-    public sealed class Polynomial
-        {
+    public sealed class Polynomial : ICloneable, IEquatable<Polynomial>
+    {
             #region Fields
 
             /// <summary>
@@ -514,7 +514,16 @@ namespace Logic
             return new Polynomial(result);
         }
 
-#endregion
+        #endregion
+
+        object ICloneable.Clone()
+        {
+            return this.Clone();
+        }
+        public Polynomial Clone()
+        {
+            return new Polynomial(this.Coefficients);
+        }
     }
 }
 
